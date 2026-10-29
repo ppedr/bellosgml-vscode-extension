@@ -1,0 +1,3 @@
+<para>a &amp; b &lt;x&gt; &mdash c</para>
+<para>&#123; &#x1F; &#X1f; &#RE; 50 % off &</para>
+<!ENTITY % ent "%other; &amp;">

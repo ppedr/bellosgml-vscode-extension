@@ -1,0 +1,31 @@
+><para id=p001 rev=1.2 xml:lang=pt-BR>text</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml
+#      ^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#         ^^^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#             ^ text.sgml meta.tag.sgml
+#              ^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                 ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                  ^^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#                     ^ text.sgml meta.tag.sgml
+#                      ^^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                              ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                               ^^^^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#                                    ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                     ^^^^ text.sgml
+#                                         ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                           ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                               ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><table frame = all>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#      ^ text.sgml meta.tag.sgml
+#       ^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#            ^ text.sgml meta.tag.sgml
+#             ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#              ^ text.sgml meta.tag.sgml
+#               ^^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#                  ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

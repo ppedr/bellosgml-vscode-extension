@@ -1,0 +1,83 @@
+><![ CDATA [ <not>a tag</not> &amp; ]]>
+#^^^^^^^^^^^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml punctuation.definition.string.begin.sgml
+#           ^^^^^^^^^^^^^^^^^^^^^^^^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml
+#                                   ^^^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml punctuation.definition.string.end.sgml
+><![CDATA[x]]>
+#^^^^^^^^^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml punctuation.definition.string.begin.sgml
+#         ^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml
+#          ^^^ text.sgml string.unquoted.cdata.sgml string.unquoted.cdata.xml punctuation.definition.string.end.sgml
+><![ RCDATA [ <para> &amp; ]]>
+#^^^ text.sgml meta.section.marked.rcdata.sgml punctuation.definition.marked-section.begin.sgml
+#   ^ text.sgml meta.section.marked.rcdata.sgml
+#    ^^^^^^ text.sgml meta.section.marked.rcdata.sgml keyword.other.marked-section.sgml
+#          ^ text.sgml meta.section.marked.rcdata.sgml
+#           ^ text.sgml meta.section.marked.rcdata.sgml punctuation.definition.marked-section.begin.sgml
+#            ^^^^^^^^ text.sgml meta.section.marked.rcdata.sgml string.unquoted.rcdata.sgml
+#                    ^ text.sgml meta.section.marked.rcdata.sgml string.unquoted.rcdata.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                     ^^^ text.sgml meta.section.marked.rcdata.sgml string.unquoted.rcdata.sgml constant.character.entity.sgml
+#                        ^ text.sgml meta.section.marked.rcdata.sgml string.unquoted.rcdata.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                         ^ text.sgml meta.section.marked.rcdata.sgml string.unquoted.rcdata.sgml
+#                          ^^^ text.sgml meta.section.marked.rcdata.sgml punctuation.definition.marked-section.end.sgml
+><![ IGNORE [ <para>hidden<![ INCLUDE [ nested ]]> still hidden </para> ]]>
+#^^^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.begin.sgml
+#   ^ text.sgml meta.section.marked.ignore.sgml
+#    ^^^^^^ text.sgml meta.section.marked.ignore.sgml keyword.other.marked-section.sgml
+#          ^ text.sgml meta.section.marked.ignore.sgml
+#           ^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.begin.sgml
+#            ^^^^^^^^^^^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                         ^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                            ^^^^^^^^^^^^^^^^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                                              ^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                                                 ^^^^^^^^^^^^^^^^^^^^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                                                                       ^^^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.end.sgml
+><![ INCLUDE [ <para id=p1>shown</para> ]]>
+#^^^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.begin.sgml
+#   ^ text.sgml meta.section.marked.sgml
+#    ^^^^^^^ text.sgml meta.section.marked.sgml keyword.other.marked-section.sgml
+#           ^ text.sgml meta.section.marked.sgml
+#            ^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.begin.sgml
+#             ^ text.sgml meta.section.marked.sgml
+#              ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#               ^^^^ text.sgml meta.section.marked.sgml meta.tag.sgml entity.name.tag.sgml
+#                   ^ text.sgml meta.section.marked.sgml meta.tag.sgml
+#                    ^^ text.sgml meta.section.marked.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                      ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                       ^^ text.sgml meta.section.marked.sgml meta.tag.sgml string.unquoted.sgml
+#                         ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                          ^^^^^ text.sgml meta.section.marked.sgml
+#                               ^^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                 ^^^^ text.sgml meta.section.marked.sgml meta.tag.sgml entity.name.tag.sgml
+#                                     ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                      ^ text.sgml meta.section.marked.sgml
+#                                       ^^^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.end.sgml
+><![ %draft; [ <para>conditional</para> ]]>
+#^^^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.begin.sgml
+#   ^ text.sgml meta.section.marked.sgml
+#    ^ text.sgml meta.section.marked.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+#     ^^^^^ text.sgml meta.section.marked.sgml constant.character.parameter-entity.sgml
+#          ^ text.sgml meta.section.marked.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+#           ^ text.sgml meta.section.marked.sgml
+#            ^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.begin.sgml
+#             ^ text.sgml meta.section.marked.sgml
+#              ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#               ^^^^ text.sgml meta.section.marked.sgml meta.tag.sgml entity.name.tag.sgml
+#                   ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                    ^^^^^^^^^^^ text.sgml meta.section.marked.sgml
+#                               ^^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                 ^^^^ text.sgml meta.section.marked.sgml meta.tag.sgml entity.name.tag.sgml
+#                                     ^ text.sgml meta.section.marked.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                      ^ text.sgml meta.section.marked.sgml
+#                                       ^^^ text.sgml meta.section.marked.sgml punctuation.definition.marked-section.end.sgml
+><![ %a; IGNORE [ x ]]>
+#^^^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.begin.sgml
+#   ^ text.sgml meta.section.marked.ignore.sgml
+#    ^ text.sgml meta.section.marked.ignore.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+#     ^ text.sgml meta.section.marked.ignore.sgml constant.character.parameter-entity.sgml
+#      ^ text.sgml meta.section.marked.ignore.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+#       ^ text.sgml meta.section.marked.ignore.sgml
+#        ^^^^^^ text.sgml meta.section.marked.ignore.sgml keyword.other.marked-section.sgml
+#              ^ text.sgml meta.section.marked.ignore.sgml
+#               ^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.begin.sgml
+#                ^^^ text.sgml meta.section.marked.ignore.sgml comment.block.ignored.sgml
+#                   ^^^ text.sgml meta.section.marked.ignore.sgml punctuation.definition.marked-section.end.sgml
+>

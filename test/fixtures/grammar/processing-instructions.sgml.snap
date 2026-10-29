@@ -1,0 +1,43 @@
+><?Pub Caret>
+#^^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.begin.sgml
+#  ^^^ text.sgml meta.tag.preprocessor.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.preprocessor.sgml
+#      ^^^^^ text.sgml meta.tag.preprocessor.sgml entity.other.attribute-name.sgml
+#           ^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.end.sgml
+><?Pub Inc>
+#^^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.begin.sgml
+#  ^^^ text.sgml meta.tag.preprocessor.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.preprocessor.sgml
+#      ^^^ text.sgml meta.tag.preprocessor.sgml entity.other.attribute-name.sgml
+#         ^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.end.sgml
+><?xml version="1.0"?>
+#^^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.begin.sgml
+#  ^^^ text.sgml meta.tag.preprocessor.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.preprocessor.sgml
+#      ^^^^^^^ text.sgml meta.tag.preprocessor.sgml entity.other.attribute-name.sgml
+#             ^ text.sgml meta.tag.preprocessor.sgml
+#              ^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#               ^^^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml
+#                  ^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                   ^^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.end.sgml
+><para>a<?Pub _font Weight="bold">b</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^ text.sgml
+#       ^^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.begin.sgml
+#         ^^^ text.sgml meta.tag.preprocessor.sgml entity.name.tag.sgml
+#            ^ text.sgml meta.tag.preprocessor.sgml
+#             ^^^^^ text.sgml meta.tag.preprocessor.sgml entity.other.attribute-name.sgml
+#                  ^ text.sgml meta.tag.preprocessor.sgml
+#                   ^^^^^^ text.sgml meta.tag.preprocessor.sgml entity.other.attribute-name.sgml
+#                         ^ text.sgml meta.tag.preprocessor.sgml
+#                          ^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                           ^^^^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml
+#                               ^ text.sgml meta.tag.preprocessor.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                ^ text.sgml meta.tag.preprocessor.sgml punctuation.definition.tag.end.sgml
+#                                 ^ text.sgml
+#                                  ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                    ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

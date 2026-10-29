@@ -1,8 +1,8 @@
 {
   "name": "bellosgml",
   "displayName": "Bello SGML Pretty Printer",
-  "description": "Pretty-prints SGML files (.sgml, .sgm) to an indented *.bello.sgml copy, including very large files.",
-  "version": "1.0.0",
+  "description": "SGML language support for VS Code: syntax highlighting, element hierarchy in breadcrumbs, outline and sticky scroll, and a pretty-printer that handles very large files.",
+  "version": "1.1.0",
   "publisher": "ppfjuni",
   "icon": "icon.png",
   "license": "MIT",
@@ -13,13 +13,26 @@
     "Formatters",
     "Programming Languages"
   ],
-  "keywords": ["sgml", "sgm", "pretty-print", "pretty print", "formatter", "indent", "beautify"],
+  "keywords": [
+    "sgml",
+    "sgm",
+    "pretty-print",
+    "pretty print",
+    "formatter",
+    "indent",
+    "beautify",
+    "syntax highlighting",
+    "outline",
+    "breadcrumbs"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ppedr/bellosgml-vscode-extension"
   },
   "main": "./extension.js",
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:sgml"
+  ],
   "contributes": {
     "languages": [
       {
@@ -47,13 +60,11 @@
         "command": "bellosgml.formatFileToNew",
         "title": "Pretty-print File on Disk to *.bello.sgml",
         "category": "SGML"
-      }
-    ],
-    "keybindings": [
+      },
       {
-        "command": "bellosgml.formatFileToNew",
-        "key": "shift+alt+f",
-        "when": "editorTextFocus && editorLangId == sgml"
+        "command": "sgml.copyElementPath",
+        "title": "Copy Element Path",
+        "category": "SGML"
       }
     ],
     "menus": {
@@ -75,6 +86,10 @@
         {
           "command": "bellosgml.formatFileToNew",
           "when": "resourceFilename =~ /^(?!.*\\.bello(\\.\\d+)?\\.sgml?$).*\\.sgml?$/i"
+        },
+        {
+          "command": "sgml.copyElementPath",
+          "when": "editorLangId == sgml"
         }
       ]
     },
@@ -124,13 +139,59 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Also open the `*.bello.sgml` copy when the original is larger than `#bellosgml.largeFileSizeMB#`."
+        },
+        "sgml.emptyElements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "Elements that never have content or an end tag (declared `EMPTY` in the DTD), such as `colspec`. Names are case-insensitive. Used for the element hierarchy (breadcrumbs, Outline, Sticky Scroll, folding, status bar)."
+        },
+        "sgml.hierarchy.inferEmptyElements": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Also treat as empty every element that is declared `EMPTY` in the internal DTD subset or that never has an end tag anywhere in the document."
+        },
+        "sgml.hierarchy.maxFileSizeMB": {
+          "type": "number",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 50,
+          "markdownDescription": "Documents larger than this (in MB) get no element hierarchy (breadcrumbs, Outline, Sticky Scroll, folding, status bar). Lower it if large documents make VS Code slow.\n\n**Note:** 50 is the most this can be. VS Code does not give extensions documents larger than 50 MB, so in those files the element hierarchy is never available and no notice is shown. Pretty-printing them to a `*.bello.sgml` copy from the right-click menu still works."
+        },
+        "sgml.hierarchy.maxSymbols": {
+          "type": "integer",
+          "default": 100000,
+          "minimum": 1,
+          "markdownDescription": "Most elements shown in breadcrumbs, Outline and Sticky Scroll. When a document has more, only the top levels of the tree are shown (deeper elements still appear in the status bar path). Every element shown costs time when the document changes."
         }
+      }
+    },
+    "configurationDefaults": {
+      "files.associations": {
+        "*.sgm": "sgml",
+        "*.sgml": "sgml"
+      },
+      "[sgml]": {
+        "editor.defaultFormatter": "ppfjuni.bellosgml"
       }
     }
   },
   "scripts": {
-    "test": "node --test test/*.test.js",
+    "test": "node --test test/*.test.js && npm run test:grammar",
+    "test:grammar": "vscode-tmgrammar-snap \"test/fixtures/grammar/*.sgml\"",
+    "test:integration": "node test/integration/runTest.js",
+    "test:all": "npm test && npm run test:integration",
+    "bench": "node scripts/bench-structure.js",
     "compare": "node test/compare-with-reference.js",
     "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/test-electron": "^3.1.0",
+    "mocha": "^12.0.3",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2",
+    "vscode-tmgrammar-test": "^0.1.3"
   }
 }

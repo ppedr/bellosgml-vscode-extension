@@ -1,0 +1,22 @@
+<!DOCTYPE dmodule [
+<!ELEMENT graphic - O EMPTY>
+]>
+<dmodule>
+<idstatus>
+<dmaddres><dmc>DMC-1</dmc></dmaddres>
+</idstatus>
+<content id="c1">
+<!--
+  description
+-->
+<para id=p1>First paragraph, <revst>revised text<revend>.</para>
+<para id=p2>Second paragraph
+<graphic boardno=ICN-01>
+<list numbered>
+<item>one</item>
+<item>two, end tag omitted
+</list>
+</para>
+<para id=p3>Third <emph>emphasis</emph> paragraph</para>
+</content>
+</dmodule>

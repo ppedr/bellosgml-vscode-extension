@@ -1,0 +1,62 @@
+><para>a &amp; b &lt;x&gt; &mdash c</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^^ text.sgml
+#        ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#         ^^^ text.sgml constant.character.entity.sgml
+#            ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#             ^^^ text.sgml
+#                ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                 ^^ text.sgml constant.character.entity.sgml
+#                   ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                    ^ text.sgml
+#                     ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                      ^^ text.sgml constant.character.entity.sgml
+#                        ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                         ^ text.sgml
+#                          ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                           ^^^^^ text.sgml constant.character.entity.sgml
+#                                ^^ text.sgml
+#                                  ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                    ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><para>&#123; &#x1F; &#X1f; &#RE; 50 % off &</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#       ^^^^ text.sgml constant.character.entity.sgml
+#           ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#            ^ text.sgml
+#             ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#              ^^^^ text.sgml constant.character.entity.sgml
+#                  ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                   ^ text.sgml
+#                    ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                     ^^^^ text.sgml constant.character.entity.sgml
+#                         ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                          ^ text.sgml
+#                           ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                            ^^^ text.sgml constant.character.entity.sgml
+#                               ^ text.sgml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                                ^^^^^^^^^^^ text.sgml
+#                                           ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                             ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                                 ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><!ENTITY % ent "%other; &amp;">
+#^^ text.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^ text.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.entity.sgml
+#        ^ text.sgml meta.tag.sgml-declaration.entity.sgml
+#         ^ text.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.entity.sgml
+#          ^ text.sgml meta.tag.sgml-declaration.entity.sgml
+#           ^^^ text.sgml meta.tag.sgml-declaration.entity.sgml variable.language.entity.sgml
+#              ^ text.sgml meta.tag.sgml-declaration.entity.sgml
+#               ^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                ^^^^^^^^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml
+#                        ^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                         ^^^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml
+#                            ^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                             ^ text.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                              ^ text.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.end.sgml
+>

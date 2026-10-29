@@ -1,0 +1,32 @@
+><para>one</><>two</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^^^ text.sgml
+#         ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#           ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#            ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#             ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#              ^^^ text.sgml
+#                 ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                   ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                       ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><list><item>a</><>b</></list>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#       ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#           ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#            ^ text.sgml
+#             ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#               ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                 ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                  ^ text.sgml
+#                   ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                      ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                        ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                            ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

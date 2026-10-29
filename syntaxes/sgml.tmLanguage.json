@@ -1,59 +1,315 @@
 {
   "name": "SGML",
   "scopeName": "text.sgml",
+  "comment": "Scopes follow VS Code's XML grammar (extensions/xml/syntaxes/xml.tmLanguage.json) with the .sgml suffix. Quoted strings and CDATA also carry the XML scope as the innermost scope, because Light+ colours `string.quoted.*.xml` and `string.unquoted.cdata.xml` differently from plain `string`. Every tag rule ends at its own '>' (or before the next '<' for unclosed tags), so omitted end tags never affect highlighting.",
   "patterns": [
     { "include": "#comment" },
+    { "include": "#marked-section" },
+    { "include": "#doctype" },
     { "include": "#declaration" },
     { "include": "#processing-instruction" },
-    { "include": "#tag" },
+    { "include": "#empty-tags" },
+    { "include": "#end-tag" },
+    { "include": "#start-tag" },
     { "include": "#entity" }
   ],
   "repository": {
     "comment": {
       "name": "comment.block.sgml",
       "begin": "<!--",
-      "end": "-->"
+      "end": "--\\s*>",
+      "captures": { "0": { "name": "punctuation.definition.comment.sgml" } }
     },
-    "declaration": {
-      "name": "meta.tag.sgml.declaration",
-      "begin": "(<!)([A-Za-z]+)",
-      "beginCaptures": {
-        "1": { "name": "punctuation.definition.tag.sgml" },
-        "2": { "name": "keyword.other.sgml" }
-      },
-      "end": ">",
-      "endCaptures": { "0": { "name": "punctuation.definition.tag.sgml" } },
-      "patterns": [{ "include": "#string" }]
+    "declaration-comment": {
+      "name": "comment.block.sgml",
+      "begin": "--",
+      "end": "--",
+      "captures": { "0": { "name": "punctuation.definition.comment.sgml" } }
     },
-    "processing-instruction": {
-      "name": "meta.tag.preprocessor.sgml",
-      "begin": "<\\?",
-      "end": "\\??>"
-    },
-    "tag": {
+    "start-tag": {
       "name": "meta.tag.sgml",
-      "begin": "(</?)([^\\s/>]+)",
+      "begin": "(<)([A-Za-z_][-.\\w]*+)",
       "beginCaptures": {
         "1": { "name": "punctuation.definition.tag.begin.sgml" },
         "2": { "name": "entity.name.tag.sgml" }
       },
-      "end": "/?>",
-      "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+      "end": "(/?>)|(?=<)",
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.end.sgml" } },
+      "patterns": [{ "include": "#attributes" }]
+    },
+    "end-tag": {
+      "name": "meta.tag.sgml",
+      "begin": "(</)([A-Za-z_][-.\\w]*+)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.sgml" },
+        "2": { "name": "entity.name.tag.sgml" }
+      },
+      "end": "(>)|(?=<)",
+      "endCaptures": { "1": { "name": "punctuation.definition.tag.end.sgml" } }
+    },
+    "empty-tags": {
+      "comment": "Minimized tags: <> (empty start tag) and </> (empty end tag).",
+      "name": "meta.tag.sgml",
+      "match": "(</?)(>)",
+      "captures": {
+        "1": { "name": "punctuation.definition.tag.begin.sgml" },
+        "2": { "name": "punctuation.definition.tag.end.sgml" }
+      }
+    },
+    "attributes": {
       "patterns": [
-        { "match": "[^\\s=/>]+", "name": "entity.other.attribute-name.sgml" },
-        { "match": "=", "name": "punctuation.separator.key-value.sgml" },
-        { "include": "#string" }
+        {
+          "comment": "name=value; an unquoted value is captured here, a quoted one is left to #string.",
+          "match": "([-.:\\w]++)\\s*+(=)\\s*+([^\\s\"'<>]++)?",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.sgml" },
+            "2": { "name": "punctuation.separator.key-value.sgml" },
+            "3": { "name": "string.unquoted.sgml" }
+          }
+        },
+        { "include": "#string" },
+        {
+          "comment": "Minimized attribute (value only), as in <list numbered>.",
+          "match": "[-.:\\w]++",
+          "name": "entity.other.attribute-name.sgml"
+        }
       ]
     },
     "string": {
       "patterns": [
-        { "name": "string.quoted.double.sgml", "begin": "\"", "end": "\"" },
-        { "name": "string.quoted.single.sgml", "begin": "'", "end": "'" }
+        {
+          "name": "string.quoted.double.sgml string.quoted.double.xml",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.sgml" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.sgml" } },
+          "patterns": [{ "include": "#entity" }]
+        },
+        {
+          "name": "string.quoted.single.sgml string.quoted.single.xml",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.sgml" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.sgml" } },
+          "patterns": [{ "include": "#entity" }]
+        }
       ]
     },
     "entity": {
-      "name": "constant.character.entity.sgml",
-      "match": "&[A-Za-z0-9#.]+;"
+      "patterns": [
+        {
+          "comment": "&name; &#123; &#x1F; &#RE; — the semicolon is optional in SGML.",
+          "name": "constant.character.entity.sgml",
+          "match": "(&)([A-Za-z_][-.\\w]*+|#[0-9]++|#[xX][0-9a-fA-F]++|#[A-Za-z][-.\\w]*+)(;)?",
+          "captures": {
+            "1": { "name": "punctuation.definition.constant.sgml" },
+            "3": { "name": "punctuation.definition.constant.sgml" }
+          }
+        }
+      ]
+    },
+    "parameter-entity": {
+      "name": "constant.character.parameter-entity.sgml",
+      "match": "(%)([A-Za-z_][-.\\w]*+)(;)?",
+      "captures": {
+        "1": { "name": "punctuation.definition.constant.sgml" },
+        "3": { "name": "punctuation.definition.constant.sgml" }
+      }
+    },
+    "processing-instruction": {
+      "comment": "SGML processing instructions end at '>' (<?Pub Caret>); XML-style '?>' is accepted too.",
+      "name": "meta.tag.preprocessor.sgml",
+      "begin": "(<\\?)\\s*+([-.:\\w]*+)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.sgml" },
+        "2": { "name": "entity.name.tag.sgml" }
+      },
+      "end": "\\??>",
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+      "patterns": [
+        { "match": "(?<=\\s)[A-Za-z_][-.:\\w]*+", "name": "entity.other.attribute-name.sgml" },
+        { "include": "#string" }
+      ]
+    },
+    "marked-section": {
+      "comment": "<![ status-keywords [ ... ]]>. IGNORE wins over CDATA, which wins over RCDATA, as in ISO 8879. Anything else (INCLUDE, TEMP, %param;, nothing) is parsed as markup.",
+      "patterns": [
+        {
+          "name": "meta.section.marked.ignore.sgml",
+          "begin": "(<!\\[)((?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*?\\s*+(?i:IGNORE)\\b(?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+)(\\[)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.marked-section.begin.sgml" },
+            "2": { "patterns": [{ "include": "#marked-section-status" }] },
+            "3": { "name": "punctuation.definition.marked-section.begin.sgml" }
+          },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.marked-section.end.sgml" } },
+          "contentName": "comment.block.ignored.sgml",
+          "patterns": [{ "include": "#ignored-nested" }]
+        },
+        {
+          "name": "string.unquoted.cdata.sgml string.unquoted.cdata.xml",
+          "begin": "<!\\[(?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*?\\s*+(?i:CDATA)\\b(?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+\\[",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.sgml" } },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.sgml" } }
+        },
+        {
+          "name": "meta.section.marked.rcdata.sgml",
+          "begin": "(<!\\[)((?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*?\\s*+(?i:RCDATA)\\b(?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+)(\\[)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.marked-section.begin.sgml" },
+            "2": { "patterns": [{ "include": "#marked-section-status" }] },
+            "3": { "name": "punctuation.definition.marked-section.begin.sgml" }
+          },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.marked-section.end.sgml" } },
+          "contentName": "string.unquoted.rcdata.sgml",
+          "patterns": [{ "include": "#entity" }]
+        },
+        {
+          "name": "meta.section.marked.sgml",
+          "begin": "(<!\\[)((?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+)(\\[)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.marked-section.begin.sgml" },
+            "2": { "patterns": [{ "include": "#marked-section-status" }] },
+            "3": { "name": "punctuation.definition.marked-section.begin.sgml" }
+          },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.marked-section.end.sgml" } },
+          "patterns": [{ "include": "$self" }]
+        }
+      ]
+    },
+    "marked-section-status": {
+      "patterns": [
+        { "include": "#parameter-entity" },
+        { "match": "(?i:\\b(?:CDATA|RCDATA|IGNORE|INCLUDE|TEMP)\\b)", "name": "keyword.other.marked-section.sgml" }
+      ]
+    },
+    "ignored-nested": {
+      "comment": "Inside an IGNORE section only nested <![ ... ]]> pairs are recognised, so the right ']]>' closes it.",
+      "begin": "<!\\[",
+      "end": "\\]\\]>",
+      "patterns": [{ "include": "#ignored-nested" }]
+    },
+    "doctype": {
+      "name": "meta.tag.sgml-declaration.doctype.sgml",
+      "begin": "(<!)((?i:DOCTYPE))(?:\\s++([A-Za-z_][-.\\w]*+))?",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.sgml" },
+        "2": { "name": "keyword.other.doctype.sgml" },
+        "3": { "name": "variable.language.documentroot.sgml" }
+      },
+      "end": ">",
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+      "patterns": [
+        { "include": "#internal-subset" },
+        { "include": "#declaration-body" }
+      ]
+    },
+    "internal-subset": {
+      "name": "meta.internalsubset.sgml",
+      "begin": "\\[",
+      "end": "\\]",
+      "captures": { "0": { "name": "punctuation.definition.constant.sgml" } },
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#marked-section-in-subset" },
+        { "include": "#declaration" },
+        { "include": "#processing-instruction" },
+        { "include": "#parameter-entity" }
+      ]
+    },
+    "marked-section-in-subset": {
+      "patterns": [
+        {
+          "name": "meta.section.marked.ignore.sgml",
+          "begin": "(<!\\[)((?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*?\\s*+(?i:IGNORE)\\b(?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+)(\\[)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.marked-section.begin.sgml" },
+            "2": { "patterns": [{ "include": "#marked-section-status" }] },
+            "3": { "name": "punctuation.definition.marked-section.begin.sgml" }
+          },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.marked-section.end.sgml" } },
+          "contentName": "comment.block.ignored.sgml",
+          "patterns": [{ "include": "#ignored-nested" }]
+        },
+        {
+          "name": "meta.section.marked.sgml",
+          "begin": "(<!\\[)((?:\\s*+(?:%[-.\\w]++;?|[A-Za-z]++))*+\\s*+)(\\[)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.marked-section.begin.sgml" },
+            "2": { "patterns": [{ "include": "#marked-section-status" }] },
+            "3": { "name": "punctuation.definition.marked-section.begin.sgml" }
+          },
+          "end": "\\]\\]>",
+          "endCaptures": { "0": { "name": "punctuation.definition.marked-section.end.sgml" } },
+          "patterns": [
+            { "include": "#comment" },
+            { "include": "#marked-section-in-subset" },
+            { "include": "#declaration" },
+            { "include": "#processing-instruction" },
+            { "include": "#parameter-entity" }
+          ]
+        }
+      ]
+    },
+    "declaration": {
+      "patterns": [
+        {
+          "name": "meta.tag.sgml-declaration.entity.sgml",
+          "begin": "(<!)((?i:ENTITY))(?:\\s++(%)(?=\\s))?(?:\\s++([A-Za-z_#][-.\\w]*+))?",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.sgml" },
+            "2": { "name": "keyword.other.entity.sgml" },
+            "3": { "name": "punctuation.definition.entity.sgml" },
+            "4": { "name": "variable.language.entity.sgml" }
+          },
+          "end": ">",
+          "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+          "patterns": [{ "include": "#declaration-body" }]
+        },
+        {
+          "name": "meta.tag.sgml-declaration.element.sgml",
+          "begin": "(<!)((?i:ELEMENT|ATTLIST))(?:\\s++([A-Za-z_][-.\\w]*+))?",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.sgml" },
+            "2": { "name": "keyword.other.declaration.sgml" },
+            "3": { "name": "entity.name.tag.sgml" }
+          },
+          "end": ">",
+          "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+          "patterns": [{ "include": "#declaration-body" }]
+        },
+        {
+          "name": "meta.tag.sgml-declaration.sgml",
+          "begin": "(<!)([A-Za-z]++)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.sgml" },
+            "2": { "name": "keyword.other.declaration.sgml" }
+          },
+          "end": ">",
+          "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+          "patterns": [{ "include": "#declaration-body" }]
+        }
+      ]
+    },
+    "declaration-body": {
+      "patterns": [
+        { "include": "#declaration-comment" },
+        { "include": "#string" },
+        { "include": "#parameter-entity" },
+        {
+          "match": "(?:#(?i:PCDATA|REQUIRED|IMPLIED|FIXED|CURRENT|CONREF|DEFAULT))\\b",
+          "name": "keyword.other.sgml"
+        },
+        {
+          "match": "\\b(?:PUBLIC|SYSTEM|CDATA|RCDATA|SDATA|NDATA|EMPTY|ANY|PI|STARTTAG|ENDTAG|MS|MD|NUMBER|NUMBERS|NAME|NAMES|NMTOKEN|NMTOKENS|NUTOKEN|NUTOKENS|ID|IDREF|IDREFS|ENTITY|ENTITIES|NOTATION)\\b",
+          "name": "keyword.other.sgml"
+        }
+      ]
     }
   }
 }

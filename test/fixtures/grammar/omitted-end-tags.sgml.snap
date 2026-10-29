@@ -1,0 +1,66 @@
+><dmodule>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><content>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><para>first paragraph
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^^^^^^^^^^^^^^^^ text.sgml
+><para id=p2>second paragraph
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml
+#      ^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#         ^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#           ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#            ^^^^^^^^^^^^^^^^^ text.sgml
+><list><item>a<item>b</list>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#      ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#       ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#           ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#            ^ text.sgml
+#             ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#              ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                  ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                   ^ text.sgml
+#                    ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                      ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                          ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><colspec colname=c1>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml
+#         ^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                 ^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#                   ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><p</p>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#  ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#    ^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+></dmodule>
+#^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#         ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><after attr="still highlighted">
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#      ^ text.sgml meta.tag.sgml
+#       ^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#           ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#            ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#             ^^^^^^^^^^^^^^^^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                              ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                               ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

@@ -1,0 +1,30 @@
+><dmodule><Para.1>x</PARA.1><list-item_2>y</list-item_2></DMODULE>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#         ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#          ^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                 ^ text.sgml
+#                  ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                    ^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                          ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                           ^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                            ^^^^^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                       ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                        ^ text.sgml
+#                                         ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                           ^^^^^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                                      ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                                       ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                                         ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                                                ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><_x.y-z9>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+></_x.y-z9>
+#^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#         ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

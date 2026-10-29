@@ -1,0 +1,7 @@
+<![ CDATA [ <not>a tag</not> &amp; ]]>
+<![CDATA[x]]>
+<![ RCDATA [ <para> &amp; ]]>
+<![ IGNORE [ <para>hidden<![ INCLUDE [ nested ]]> still hidden </para> ]]>
+<![ INCLUDE [ <para id=p1>shown</para> ]]>
+<![ %draft; [ <para>conditional</para> ]]>
+<![ %a; IGNORE [ x ]]>

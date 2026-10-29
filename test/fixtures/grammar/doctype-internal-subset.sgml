@@ -1,0 +1,9 @@
+<!DOCTYPE dmodule PUBLIC "-//AIA//DTD dmodule 4.0//EN" [
+<!ENTITY ICN-01 SYSTEM "ICN-01.cgm" NDATA cgm>
+<!ENTITY % isolat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN">
+%isolat1;
+<!ELEMENT colspec - O EMPTY>
+<!ATTLIST colspec colname NMTOKEN #IMPLIED colwidth CDATA #REQUIRED>
+<!-- comment in subset -->
+]>
+<dmodule>

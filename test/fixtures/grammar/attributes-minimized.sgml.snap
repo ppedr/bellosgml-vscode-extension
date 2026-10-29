@@ -1,0 +1,25 @@
+><list numbered compact>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml
+#      ^^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#              ^ text.sgml meta.tag.sgml
+#               ^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                      ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><entry align=center colname="c1" valign>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#      ^ text.sgml meta.tag.sgml
+#       ^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#            ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#             ^^^^^^ text.sgml meta.tag.sgml string.unquoted.sgml
+#                   ^ text.sgml meta.tag.sgml
+#                    ^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                           ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                            ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                             ^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                               ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                ^ text.sgml meta.tag.sgml
+#                                 ^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                                       ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

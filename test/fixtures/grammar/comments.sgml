@@ -1,0 +1,6 @@
+<!-- a comment with <tags> & entities -->
+<!--
+  multi-line
+-->
+<!ENTITY % local -- parameter entity -- "x">
+<!ELEMENT para - O (#PCDATA) -- omitted end tag -->

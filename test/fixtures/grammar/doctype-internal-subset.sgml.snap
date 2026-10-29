@@ -1,0 +1,80 @@
+><!DOCTYPE dmodule PUBLIC "-//AIA//DTD dmodule 4.0//EN" [
+#^^ text.sgml meta.tag.sgml-declaration.doctype.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml keyword.other.doctype.sgml
+#         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml
+#          ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml variable.language.documentroot.sgml
+#                 ^ text.sgml meta.tag.sgml-declaration.doctype.sgml
+#                  ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml keyword.other.sgml
+#                        ^ text.sgml meta.tag.sgml-declaration.doctype.sgml
+#                         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml string.quoted.double.sgml string.quoted.double.xml
+#                                                     ^ text.sgml meta.tag.sgml-declaration.doctype.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                                      ^ text.sgml meta.tag.sgml-declaration.doctype.sgml
+#                                                       ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml punctuation.definition.constant.sgml
+><!ENTITY ICN-01 SYSTEM "ICN-01.cgm" NDATA cgm>
+#^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.entity.sgml
+#        ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#         ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml variable.language.entity.sgml
+#               ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.sgml
+#                      ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                       ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                        ^^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml
+#                                  ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                   ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                                    ^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.sgml
+#                                         ^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                                             ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.end.sgml
+><!ENTITY % isolat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN">
+#^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.entity.sgml
+#        ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.entity.sgml
+#          ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#           ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml variable.language.entity.sgml
+#                  ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                   ^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml keyword.other.sgml
+#                         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml
+#                          ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml
+#                                                                    ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                                                     ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.entity.sgml punctuation.definition.tag.end.sgml
+>%isolat1;
+#^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml constant.character.parameter-entity.sgml
+#        ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml constant.character.parameter-entity.sgml punctuation.definition.constant.sgml
+><!ELEMENT colspec - O EMPTY>
+#^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.declaration.sgml
+#         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#          ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml entity.name.tag.sgml
+#                 ^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#                      ^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.sgml
+#                           ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml punctuation.definition.tag.end.sgml
+><!ATTLIST colspec colname NMTOKEN #IMPLIED colwidth CDATA #REQUIRED>
+#^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml punctuation.definition.tag.begin.sgml
+#  ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.declaration.sgml
+#         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#          ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml entity.name.tag.sgml
+#                 ^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#                          ^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.sgml
+#                                 ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#                                  ^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.sgml
+#                                          ^^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#                                                    ^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.sgml
+#                                                         ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml
+#                                                          ^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml keyword.other.sgml
+#                                                                   ^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml meta.tag.sgml-declaration.element.sgml punctuation.definition.tag.end.sgml
+><!-- comment in subset -->
+#^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml comment.block.sgml punctuation.definition.comment.sgml
+#    ^^^^^^^^^^^^^^^^^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml comment.block.sgml
+#                       ^^^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml comment.block.sgml punctuation.definition.comment.sgml
+>]>
+#^ text.sgml meta.tag.sgml-declaration.doctype.sgml meta.internalsubset.sgml punctuation.definition.constant.sgml
+# ^ text.sgml meta.tag.sgml-declaration.doctype.sgml punctuation.definition.tag.end.sgml
+><dmodule>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

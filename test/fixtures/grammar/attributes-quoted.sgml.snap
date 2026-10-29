@@ -1,0 +1,48 @@
+><para id="p001" class='note' title="a &amp; b">text</para>
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#     ^ text.sgml meta.tag.sgml
+#      ^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#        ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#         ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#          ^^^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#              ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#               ^ text.sgml meta.tag.sgml
+#                ^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                     ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                      ^ text.sgml meta.tag.sgml string.quoted.single.sgml string.quoted.single.xml punctuation.definition.string.begin.sgml
+#                       ^^^^ text.sgml meta.tag.sgml string.quoted.single.sgml string.quoted.single.xml
+#                           ^ text.sgml meta.tag.sgml string.quoted.single.sgml string.quoted.single.xml punctuation.definition.string.end.sgml
+#                            ^ text.sgml meta.tag.sgml
+#                             ^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                                  ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                                   ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                                    ^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                                      ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                                       ^^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml
+#                                          ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml constant.character.entity.sgml punctuation.definition.constant.sgml
+#                                           ^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                                             ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                                              ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+#                                               ^^^^ text.sgml
+#                                                   ^^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+#                                                     ^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#                                                         ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+><graphic boardno="ICN-01"
+#^ text.sgml meta.tag.sgml punctuation.definition.tag.begin.sgml
+# ^^^^^^^ text.sgml meta.tag.sgml entity.name.tag.sgml
+#        ^ text.sgml meta.tag.sgml
+#         ^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#                ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#                 ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#                  ^^^^^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                        ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+>  reprowid="50mm">
+#^^ text.sgml meta.tag.sgml
+#  ^^^^^^^^ text.sgml meta.tag.sgml entity.other.attribute-name.sgml
+#          ^ text.sgml meta.tag.sgml punctuation.separator.key-value.sgml
+#           ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.begin.sgml
+#            ^^^^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml
+#                ^ text.sgml meta.tag.sgml string.quoted.double.sgml string.quoted.double.xml punctuation.definition.string.end.sgml
+#                 ^ text.sgml meta.tag.sgml punctuation.definition.tag.end.sgml
+>

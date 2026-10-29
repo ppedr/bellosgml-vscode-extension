@@ -1,0 +1,9 @@
+<dmodule>
+<content>
+<para>first paragraph
+<para id=p2>second paragraph
+<list><item>a<item>b</list>
+<colspec colname=c1>
+<p</p>
+</dmodule>
+<after attr="still highlighted">

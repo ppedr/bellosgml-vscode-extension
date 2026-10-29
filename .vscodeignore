@@ -1,6 +1,8 @@
 # Tests and build scripts
 test/**
 scripts/**
+.vscode-test/**
+prompt/**
 
 # Dev/config files
 .vscode/**

@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { Worker } = require('worker_threads');
 const { tempPathFor } = require('./lib/fileio');
+const hierarchy = require('./lib/hierarchy');
 
 const WORKER_PATH = path.join(__dirname, 'lib', 'worker.js');
 
@@ -85,8 +86,7 @@ async function saveIfDirty(uri) {
 }
 
 // Same pattern as the menu `when` clauses in package.json, which hide the command
-// for copies. The keybinding stays on so Shift+Alt+F in a copy explains itself
-// instead of falling through to VS Code's "no formatter installed" prompt.
+// for copies.
 const BELLO_COPY = /\.bello(\.\d+)?\.sgml?$/i;
 
 // Never overwrite an earlier copy: name.bello.sgml, then name.bello.1.sgml, name.bello.2.sgml…
@@ -142,9 +142,38 @@ async function formatToCopy(uri) {
     if (choice === 'Open') await vscode.window.showTextDocument(outputUri);
 }
 
-// Explorer passes the clicked file; the keybinding and the editor menu pass
-// nothing, so use the active tab (which also covers files above 50 MB, which
-// VS Code never hands to the extension API as text editors).
+// Format Document (Shift+Alt+F). Replacing a large document through an edit
+// runs on the window's UI thread and can freeze VS Code, so above
+// `largeFileSizeMB` the document is left alone and the copy is offered instead.
+// The formatter itself runs on the worker thread, as for copies; line endings
+// follow the document, since VS Code normalises the edit to them anyway.
+async function formatDocumentEdits(document, token) {
+    const text = document.getText();
+    const limitMB = vscode.workspace.getConfiguration('bellosgml', document.uri).get('largeFileSizeMB', 5);
+    if (text.length > limitMB * 1024 * 1024) {
+        const name = path.basename(document.uri.fsPath);
+        const canCopy = document.uri.scheme === 'file' && !BELLO_COPY.test(document.uri.fsPath);
+        vscode.window.showInformationMessage(
+            `Bello SGML: ${name} is larger than ${limitMB} MB, so it is not reformatted in the editor` +
+                (canCopy ? '. Write a pretty-printed *.bello.sgml copy instead?' : '.'),
+            ...(canCopy ? ['Pretty-print to Copy'] : [])
+        ).then((choice) => {
+            if (choice) vscode.commands.executeCommand('bellosgml.formatFileToNew', document.uri);
+        });
+        return [];
+    }
+    const options = {
+        ...readOptions(document.uri),
+        eol: document.eol === vscode.EndOfLine.CRLF ? '\r\n' : '\n',
+    };
+    const result = await runWorker({ kind: 'text', text, options }, token);
+    if (token.isCancellationRequested || result.text === text) return [];
+    return [vscode.TextEdit.replace(new vscode.Range(document.positionAt(0), document.positionAt(text.length)), result.text)];
+}
+
+// Explorer passes the clicked file; the editor menu passes nothing, so use the
+// active tab (which also covers files above 50 MB, which VS Code never hands
+// to the extension API as text editors).
 function activeTabUri() {
     const tab = vscode.window.tabGroups.activeTabGroup.activeTab;
     return tab && tab.input && tab.input.uri instanceof vscode.Uri ? tab.input.uri : undefined;
@@ -165,8 +194,21 @@ function activate(context) {
     context.subscriptions.push(
         vscode.commands.registerCommand('bellosgml.formatFileToNew', guard(async (uri) => {
             await formatToCopy(uri instanceof vscode.Uri ? uri : activeTabUri());
-        }))
+        })),
+        vscode.languages.registerDocumentFormattingEditProvider({ language: 'sgml' }, {
+            async provideDocumentFormattingEdits(document, _options, token) {
+                try {
+                    return await formatDocumentEdits(document, token);
+                } catch (err) {
+                    if (!(err instanceof vscode.CancellationError)) {
+                        vscode.window.showErrorMessage(`Bello SGML: ${err.message || err}`);
+                    }
+                    return [];
+                }
+            },
+        })
     );
+    hierarchy.register(context);
 }
 
 function deactivate() {}
