@@ -1,8 +1,1 @@
-<!DOCTYPE musica SYSTEM "musica.dtd">
-<musica  ritmo="bossa"   id="bello"><titulo>Canção do Bello</titulo><artista>Bello SGML</artista>
-<letra><estrofe n="1"><verso>Abri a tag do teu olhar</verso><verso>e esqueci de a fechar</verso>
-      <verso>o parser veio me avisar</verso></estrofe><refrao>
-<verso>Indenta, indenta o coração</verso>
-<verso>cada verso em seu lugar</verso><verso>nenhum fim de tag em vão</verso></refrao>
-   <estrofe n="2"><verso>Era um arquivo sem final</verso><verso>cinco mega de saudade</verso>
-<verso>e um Shift+Alt+F afinal</verso></estrofe></letra></musica>
+<musica><titulo>Tua Boca</titulo><artista>Belo</artista><letra><estrofe><verso>Mel, tua boca tem o mel</verso><verso>E melhor sabor não há</verso><verso>Que loucura te beijar</verso></estrofe><estrofe><verso>Céu, tua boca tem o céu</verso><verso>Infinito no prazer</verso><verso>Toda vez que amo você</verso></estrofe><estrofe><verso>Meu amor, as palavras que me diz</verso><verso>Eu preciso sempre ouvir</verso><verso>Pra poder viver feliz</verso><verso>O teu sorriso tem a luz da sedução</verso><verso>Faz maior essa paixão</verso><verso>No encontro com você</verso></estrofe><estrofe><verso>Mel, tua boca tem o mel</verso><verso>E melhor sabor não há</verso><verso>Que loucura te beijar</verso></estrofe><estrofe><verso>Céu, tua boca tem o céu</verso><verso>Infinito no prazer</verso><verso>Toda vez que amo você</verso></estrofe><estrofe><verso>Meu amor, as palavras que me diz</verso><verso>Eu preciso sempre ouvir</verso><verso>Pra poder viver feliz</verso><verso>A tua boca nem parece que é real</verso><verso>Tem os lábios que eu sonhei</verso><verso>Beijar do jeito que eu beijei</verso></estrofe><estrofe><verso>Que eu beijei</verso><verso>Mel</verso></estrofe></letra></musica>    
