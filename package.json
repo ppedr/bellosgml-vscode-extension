@@ -1,0 +1,135 @@
+{
+  "name": "bellosgml",
+  "displayName": "Bello SGML Pretty Printer",
+  "description": "Pretty-prints SGML files (.sgml, .sgm) to an indented *.bello.sgml copy, including very large files.",
+  "version": "1.0.0",
+  "publisher": "ppfjuni",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Formatters",
+    "Programming Languages"
+  ],
+  "keywords": ["sgml", "sgm", "pretty-print", "pretty print", "formatter", "indent", "beautify"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ppedr/bellosgml-vscode-extension"
+  },
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "sgml",
+        "aliases": [
+          "SGML",
+          "sgml"
+        ],
+        "extensions": [
+          ".sgml",
+          ".sgm"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sgml",
+        "scopeName": "text.sgml",
+        "path": "./syntaxes/sgml.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "bellosgml.formatFileToNew",
+        "title": "Pretty-print File on Disk to *.bello.sgml",
+        "category": "SGML"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "bellosgml.formatFileToNew",
+        "key": "shift+alt+f",
+        "when": "editorTextFocus && editorLangId == sgml"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "bellosgml.formatFileToNew",
+          "when": "resourceFilename =~ /^(?!.*\\.bello(\\.\\d+)?\\.sgml?$).*\\.sgml?$/i",
+          "group": "7_modification@1"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "bellosgml.formatFileToNew",
+          "when": "editorLangId == sgml && resourceFilename =~ /^(?!.*\\.bello(\\.\\d+)?\\.sgml?$).*\\.sgml?$/i",
+          "group": "1_modification@9"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "bellosgml.formatFileToNew",
+          "when": "resourceFilename =~ /^(?!.*\\.bello(\\.\\d+)?\\.sgml?$).*\\.sgml?$/i"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Bello SGML",
+      "properties": {
+        "bellosgml.indent": {
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 8,
+          "markdownDescription": "Indentation: `0` uses one tab per level; `1`–`8` uses that many spaces."
+        },
+        "bellosgml.wrapWidth": {
+          "type": "integer",
+          "default": 80,
+          "minimum": 0,
+          "markdownDescription": "Text longer than this is wrapped at the last space at or before this column (indentation not counted). `0` disables wrapping."
+        },
+        "bellosgml.lineEnding": {
+          "type": "string",
+          "enum": [
+            "crlf",
+            "lf",
+            "keep"
+          ],
+          "enumDescriptions": [
+            "CRLF (Windows)",
+            "LF",
+            "Keep the line ending already used by the file"
+          ],
+          "default": "crlf",
+          "description": "Line ending of the pretty-printed output."
+        },
+        "bellosgml.insertFinalNewline": {
+          "type": "boolean",
+          "default": false,
+          "description": "End the pretty-printed output with a line break."
+        },
+        "bellosgml.largeFileSizeMB": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "markdownDescription": "The `*.bello.sgml` copy of a file up to this size (in MB) opens right after it is written. Larger copies open only if `#bellosgml.openLargeFileOutput#` is on, because opening a huge file can make VS Code slow for a while."
+        },
+        "bellosgml.openLargeFileOutput": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Also open the `*.bello.sgml` copy when the original is larger than `#bellosgml.largeFileSizeMB#`."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "compare": "node test/compare-with-reference.js",
+    "package": "vsce package"
+  }
+}

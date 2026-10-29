@@ -1,0 +1,672 @@
+[
+ {
+  "name": "attrs1",
+  "input": "<A Z=\"1\" B='2' C=3 D>x</A>",
+  "expected": "<A B='2' C=3 D Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "attrs2",
+  "input": "<A X=\"a  b\"   Y = \"c\"\tW=\"q\">x</A>",
+  "expected": "<A X=\"a  b\" Y = \"c\"\tW=\"q\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "attrs3",
+  "input": "<A b=\"1\" B=\"2\" a=\"3\" _x=\"4\" 1=\"5\">x</A>",
+  "expected": "<A 1=\"5\" B=\"2\" _x=\"4\" a=\"3\" b=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "attrs4",
+  "input": "<A X=\"&amp; z\" Y=\"\">x</A>",
+  "expected": "<A X=\"&amp; z\" Y=\"\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "attrdup",
+  "input": "<A X=\"1\" X=\"2\">x</A>",
+  "expected": "<A X=\"1\" X=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "closenl",
+  "input": "<A><B>x</B\n></A>",
+  "expected": "\t\t<A>\r\n\t\t<B>\r\n\t\tx\r\n\t</B >\r\n</A>"
+ },
+ {
+  "name": "selfclose",
+  "input": "<A><C/>x</C></A>",
+  "expected": "\t\t<A>\r\n\t\t<C/>\r\n\t\tx\r\n\t</C>\r\n</A>"
+ },
+ {
+  "name": "interleave",
+  "input": "<A><B>x</A></B>",
+  "expected": "\t<A>\r\n\t\t<B>\r\n\t\tx\r\n\t</A>\r\n</B>"
+ },
+ {
+  "name": "deep",
+  "input": "<A>x<B>y</A></B>",
+  "expected": "\t<A>\r\n\t\tx\r\n\t\t<B>\r\n\t\ty\r\n\t</A>\r\n</B>"
+ },
+ {
+  "name": "deep2",
+  "input": "<A><B><C>x</A>",
+  "expected": "<A>\r\n\t<B>\r\n\t<C>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "deep3",
+  "input": "<A><B>x</B><B>y</A>",
+  "expected": "<A>\r\n\t<B>\r\n\t\tx\r\n\t</B>\r\n\t<B>\r\n\ty\r\n</A>"
+ },
+ {
+  "name": "ws1",
+  "input": "<A>a  \n  b\tc \t d</A>",
+  "expected": "<A>\r\n\ta b\tc \t d\r\n</A>"
+ },
+ {
+  "name": "casemix",
+  "input": "<a>x</A>",
+  "expected": "\t<a>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "comment_top",
+  "input": "<!-- c --><A>x</A>",
+  "expected": "<!-- c -->\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "multiroot",
+  "input": "<A>x</A><B>y</B>",
+  "expected": "<A>\r\n\tx\r\n</A>\r\n<B>\r\n\ty\r\n</B>"
+ },
+ {
+  "name": "textbefore",
+  "input": "before<A>x</A>",
+  "expected": "before\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "empty",
+  "input": "<A></A>",
+  "expected": "<A>\r\n</A>"
+ },
+ {
+  "name": "latin1",
+  "input": "<A>café naïve</A>",
+  "expected": "<A>\r\n\tcafé naïve\r\n</A>"
+ },
+ {
+  "name": "tabattr",
+  "input": "<A\tX=\"1\"\n\tY=\"2\"  >x</A>",
+  "expected": "<A\tX=\"1\" Y=\"2\"  >\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "endslash",
+  "input": "<A X=\"1\"/>",
+  "expected": "<A X=\"1\"/>"
+ },
+ {
+  "name": "a",
+  "input": "<A  >x</A>",
+  "expected": "<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "b",
+  "input": "<A X=\"1\"  >x</A>",
+  "expected": "<A  X=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "c",
+  "input": "<A Y=\"2\" X=\"1\"  >x</A>",
+  "expected": "<A  X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "d",
+  "input": "<A\tX=\"1\" >x</A>",
+  "expected": "<A\tX=\"1\" >\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "f",
+  "input": "<A Y=\"2\"   X=\"1\">x</A>",
+  "expected": "<A X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "g",
+  "input": "<A Y=\"2\" Q X=\"1\">x</A>",
+  "expected": "<A Q X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "h",
+  "input": "<A Y=\"2\" Q=3 X=\"1\">x</A>",
+  "expected": "<A Q=3 X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "i",
+  "input": "<A Y=\"2\" Q='3' X=\"1\">x</A>",
+  "expected": "<A Q='3' X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "j",
+  "input": "<A Y = \"2\" X=\"1\">x</A>",
+  "expected": "<A X=\"1\" Y = \"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "k",
+  "input": "<A Y=\"a b\" X=\"1\">x</A>",
+  "expected": "<A X=\"1\" Y=\"a b\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "l",
+  "input": "<A Y=\"a>x</A>",
+  "expected": "<A Y=\"a>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "m",
+  "input": "<A Y=\"2\"X=\"1\">x</A>",
+  "expected": "<A Y=\"2\"X=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "n",
+  "input": "<A\tY=\"2\" X=\"1\">x</A>",
+  "expected": "<A\tY=\"2\" X=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "o",
+  "input": "<A Y=\"2\"\tX=\"1\">x</A>",
+  "expected": "<A Y=\"2\"\tX=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "p",
+  "input": "   <A>x</A>",
+  "expected": "<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "q",
+  "input": "<A Y=\"2\" X=\"1\" >x</A>",
+  "expected": "<A  X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "r",
+  "input": "<A Y=\"a  b\" X=\"1\">x</A>",
+  "expected": "<A X=\"1\" Y=\"a  b\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "s",
+  "input": "<A Y=\"2\" X=\"1\" Z>x</A>",
+  "expected": "<A X=\"1\" Y=\"2\" Z>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "u",
+  "input": "<A  Y=\"2\" X=\"1\">x</A>",
+  "expected": "<A X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "v",
+  "input": "< A>x</A>",
+  "expected": "\t< A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "w",
+  "input": "<A Y=\"2\" X=\"1 >x</A>",
+  "expected": "<A X=\"1  Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "x",
+  "input": "<A Y=\"2\" X=\"1\" Z=\">x</A>",
+  "expected": "<A X=\"1\" Y=\"2\" Z=\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "y",
+  "input": "<A Y=\"2\" X='a\"b'>x</A>",
+  "expected": "<A X='a\"b' Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "z",
+  "input": "<A Y=\"2\" X=\"a=b c\">x</A>",
+  "expected": "<A X=\"a=b Y=\"2\" c\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e1",
+  "input": "<A>a\n\nb</A>",
+  "expected": "<A>\r\n\ta b\r\n</A>"
+ },
+ {
+  "name": "e2",
+  "input": "<A>a\t\n\tb</A>",
+  "expected": "<A>\r\n\ta b\r\n</A>"
+ },
+ {
+  "name": "e3",
+  "input": "<A>\ta\t</A>",
+  "expected": "<A>\r\n\ta\r\n</A>"
+ },
+ {
+  "name": "e4",
+  "input": "<A>a</A>\n\n\n<B>b</B>",
+  "expected": "<A>\r\n\ta\r\n</A>\r\n<B>\r\n\tb\r\n</B>"
+ },
+ {
+  "name": "e5",
+  "input": "</A>",
+  "expected": "</A>"
+ },
+ {
+  "name": "e6",
+  "input": "<A>x</A></A>",
+  "expected": "\t<A>\r\n\t\tx\r\n\t</A>\r\n</A>"
+ },
+ {
+  "name": "e7",
+  "input": "<A><B/></A>",
+  "expected": "<A>\r\n\t<B/>\r\n</A>"
+ },
+ {
+  "name": "e8",
+  "input": "<!DOCTYPE A [<!ENTITY x \"y\">]><A>x</A>",
+  "expected": "<!DOCTYPE A [<!ENTITY x \"y\">\r\n]>\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e9",
+  "input": "<A X=\"1\"\r\n Y=\"2\">x</A>",
+  "expected": "<A X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e10",
+  "input": "<!-- Y=\"2\" X=\"1\" --><A>x</A>",
+  "expected": "<!-- Y=\"2\" X=\"1\" -->\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e11",
+  "input": "<?pi Y=\"2\" X=\"1\"?><A>x</A>",
+  "expected": "<?pi Y=\"2\" X=\"1\"?>\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e12",
+  "input": "</A X=\"2\">",
+  "expected": "</A X=\"2\">"
+ },
+ {
+  "name": "e13",
+  "input": "<A Y=2 X=1>x</A>",
+  "expected": "<A Y=2 X=1>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "e14",
+  "input": "<A Y=\"\" X>x</A>",
+  "expected": "<A X Y=\"\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "w79",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \r\n\tyyyyy\r\n</A>"
+ },
+ {
+  "name": "w80",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \r\n\tyyyyy\r\n</A>"
+ },
+ {
+  "name": "w81",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyy\r\n</A>"
+ },
+ {
+  "name": "w78",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \r\n\tyyyyy\r\n</A>"
+ },
+ {
+  "name": "wlong",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n</A>"
+ },
+ {
+  "name": "wlong2",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy z</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy z\r\n</A>"
+ },
+ {
+  "name": "wexact80",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n</A>"
+ },
+ {
+  "name": "wexact81",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n</A>"
+ },
+ {
+  "name": "wexact82",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n</A>"
+ },
+ {
+  "name": "wdepth",
+  "input": "<A><B><C><D><E><F><G><H><I><J>word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word </J></I></H></G></F></E></D></C></B></A>",
+  "expected": "<A>\r\n\t<B>\r\n\t\t<C>\r\n\t\t\t<D>\r\n\t\t\t\t<E>\r\n\t\t\t\t\t<F>\r\n\t\t\t\t\t\t<G>\r\n\t\t\t\t\t\t\t<H>\r\n\t\t\t\t\t\t\t\t<I>\r\n\t\t\t\t\t\t\t\t\t<J>\r\n\t\t\t\t\t\t\t\t\t\tword word word word word word word word word word word word word word word word \r\n\t\t\t\t\t\t\t\t\t\tword word word word word word word word word word word word word word word word \r\n\t\t\t\t\t\t\t\t\t\tword word word word word word word word\r\n\t\t\t\t\t\t\t\t\t</J>\r\n\t\t\t\t\t\t\t\t</I>\r\n\t\t\t\t\t\t\t</H>\r\n\t\t\t\t\t\t</G>\r\n\t\t\t\t\t</F>\r\n\t\t\t\t</E>\r\n\t\t\t</D>\r\n\t\t</C>\r\n\t</B>\r\n</A>"
+ },
+ {
+  "name": "wtab",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\tyyyyyyyyyyyyyyyyyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\tyyyyyyyyyyyyyyyyyyyy\r\n</A>"
+ },
+ {
+  "name": "wdbl",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  yyyyyyyyyyyyyyyyyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  \r\n\tyyyyyyyyyyyyyyyyyyyy\r\n</A>"
+ },
+ {
+  "name": "wdbl2",
+  "input": "<A>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  yyyyyyyyyyyyyyyyyyyy</A>",
+  "expected": "<A>\r\n\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \r\n\t yyyyyyyyyyyyyyyyyyyy\r\n</A>"
+ },
+ {
+  "name": "wutf8",
+  "input": "<A>Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã© yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</A>",
+  "expected": "<A>\r\n\tÃ©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã©Ã© yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\r\n</A>"
+ },
+ {
+  "name": "nq",
+  "input": "<A   B  C >x</A>",
+  "expected": "<A B  C>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "pi2",
+  "input": "<?Pub _font TypeSize=\"12\" A=\"1\">",
+  "expected": "<?Pub _font TypeSize=\"12\" A=\"1\">"
+ },
+ {
+  "name": "bang",
+  "input": "<!X Y=\"2\" X=\"1\">",
+  "expected": "<!X Y=\"2\" X=\"1\">"
+ },
+ {
+  "name": "nm1",
+  "input": "<A\tX=\"1\">x</A>",
+  "expected": "<A\tX=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "nm2",
+  "input": "<A/ X=\"1\">x</A>",
+  "expected": "<A/ X=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "lt2",
+  "input": "<A>x <<B>y</B></A>",
+  "expected": "<A>\r\n\tx\r\n\t<<B>\r\n\t\ty\r\n\t</B>\r\n</A>"
+ },
+ {
+  "name": "cr",
+  "input": "<A>a\rb</A>",
+  "expected": "<A>\r\n\ta\rb\r\n</A>"
+ },
+ {
+  "name": "trailing_nl",
+  "input": "<A>x</A>\r\n",
+  "expected": "<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "tok_text_ws",
+  "input": "<A>x</A>   \n  <B>y</B>",
+  "expected": "<A>\r\n\tx\r\n</A>\r\n<B>\r\n\ty\r\n</B>"
+ },
+ {
+  "name": "T1",
+  "input": "<A><B Y=\"2\" X=\"1\">x</A>",
+  "expected": "<A>\r\n\t<B X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T8",
+  "input": "<R><A Y=\"2\" X=\"1\">x</R>",
+  "expected": "<R>\r\n\t<A X=\"1\" Y=\"2\">\r\n\tx\r\n</R>"
+ },
+ {
+  "name": "T8b",
+  "input": "<A Y=\"2\" X=\"1\"/><R>x</R>",
+  "expected": "<A X=\"1\" Y=\"2\"/>\r\n<R>\r\n\tx\r\n</R>"
+ },
+ {
+  "name": "T3b",
+  "input": "<A\tZ=\"3\" Y=\"2\" X=\"1\">x</A>",
+  "expected": "<A\tZ=\"3\" Y=\"2\" X=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T7a",
+  "input": "<A X=\"1\" Z=\"2\"\t>x</A>",
+  "expected": "<A X=\"1\" Z=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T7b",
+  "input": "<A Z=\"2\" X=\"1\"\t >x</A>",
+  "expected": "<A  X=\"1\" Z=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T7c",
+  "input": "<A Z=\"2\" X=\"1\" \t>x</A>",
+  "expected": "<A  X=\"1\" Z=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T4",
+  "input": "<A Y=\"2\" X=\"1\"   >x</A>",
+  "expected": "<A  X=\"1\" Y=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6a",
+  "input": "<A Z=\"1\" Y = \"c\">x</A>",
+  "expected": "<A Y = \"c\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6b",
+  "input": "<A Z=\"1\" Y= \"c\">x</A>",
+  "expected": "<A Y= \"c\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6c",
+  "input": "<A Z=\"1\" Y =\"c\">x</A>",
+  "expected": "<A Y =\"c\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6d",
+  "input": "<A Z=\"1\" \"c\">x</A>",
+  "expected": "<A \"c\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6e",
+  "input": "<A Z=\"1\" =>x</A>",
+  "expected": "<A = Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6f",
+  "input": "<A Z=\"1\" Y=\"c\"\tW=\"q\">x</A>",
+  "expected": "<A Y=\"c\"\tW=\"q\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T6g",
+  "input": "<A Z=\"1\" Y=\"c\" W=\"q\"\tV>x</A>",
+  "expected": "<A W=\"q\"\tV Y=\"c\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T9",
+  "input": "<A Z=\"1\" B=\"x\ty\">x</A>",
+  "expected": "<A B=\"x\ty\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T10",
+  "input": "<A Z=\"1\"\tB>x</A>",
+  "expected": "<A Z=\"1\"\tB>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T11",
+  "input": "<A Z=\"a b c\" B=\"1\">x</A>",
+  "expected": "<A B=\"1\" Z=\"a b c\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T12",
+  "input": "<A Z=\"1\" B='a b' C=\"2\">x</A>",
+  "expected": "<A B='a b' C=\"2\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T13",
+  "input": "<A Z=1 B=\"2\">x</A>",
+  "expected": "<A Z=1 B=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "T16",
+  "input": "<R><A Z=\"1\" B=\"2\"></R>",
+  "expected": "<R>\r\n\t<A B=\"2\" Z=\"1\">\r\n</R>"
+ },
+ {
+  "name": "E1",
+  "input": "<A Z=1 Y=\"2\" B=\"3\">x</A>",
+  "expected": "<A Z=1 Y=\"2\" B=\"3\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E2",
+  "input": "<A Z=\"1\" Y=2 B=\"3\">x</A>",
+  "expected": "<A Y=2 B=\"3\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E3",
+  "input": "<A Z='1' B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z='1'>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E4",
+  "input": "<A Z = \"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z = \"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E5",
+  "input": "<A Q Z=\"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Q Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E6",
+  "input": "<A.B Z=\"1\" B=\"2\">x</A.B>",
+  "expected": "<A.B B=\"2\" Z=\"1\">\r\n\tx\r\n</A.B>"
+ },
+ {
+  "name": "E7",
+  "input": "<A-B Z=\"1\" B=\"2\">x</A-B>",
+  "expected": "<A-B B=\"2\" Z=\"1\">\r\n\tx\r\n</A-B>"
+ },
+ {
+  "name": "E8",
+  "input": "<a:b Z=\"1\" B=\"2\">x</a:b>",
+  "expected": "<a:b B=\"2\" Z=\"1\">\r\n\tx\r\n</a:b>"
+ },
+ {
+  "name": "E9",
+  "input": "<A Z=\"1\" B=2>x</A>",
+  "expected": "<A B=2 Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E10",
+  "input": "<A Z= \"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z= \"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E11",
+  "input": "<A Z.1=\"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z.1=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E12",
+  "input": "<A Z-1=\"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z-1=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E13",
+  "input": "<A Z:x=\"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z:x=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E14",
+  "input": "<A Z=\"\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z=\"\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E15",
+  "input": "<A Z=\"1\"B=\"2\" C=\"0\">x</A>",
+  "expected": "<A Z=\"1\"B=\"2\" C=\"0\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E16",
+  "input": "<A \tZ=\"1\" B=\"2\">x</A>",
+  "expected": "<A B=\"2\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E17",
+  "input": "<A Z=\"1\" \tB=\"2\" C=\"0\">x</A>",
+  "expected": "<A B=\"2\" C=\"0\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E18",
+  "input": "<A Z=\"1\" B=\"2\"\tC=\"0\" D=\"x\">x</A>",
+  "expected": "<A B=\"2\"\tC=\"0\" D=\"x\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E19",
+  "input": "<A Z=\"a=b\" B=\"2\">x</A>",
+  "expected": "<A Z=\"a=b\" B=\"2\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E20",
+  "input": "<A Z=\"1\" B=\"a=\" C=\"x y\">x</A>",
+  "expected": "<A B=\"a=\" C=\"x y\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E21",
+  "input": "<A Z=\"1\"  =  B=\"2\">x</A>",
+  "expected": "<A =  B=\"2\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E22",
+  "input": "<A9 Z=\"1\" B=\"2\">x</A9>",
+  "expected": "<A9 B=\"2\" Z=\"1\">\r\n\tx\r\n</A9>"
+ },
+ {
+  "name": "E23",
+  "input": "<A Z=\"1\" B=\"2\" Z=\"0\">x</A>",
+  "expected": "<A B=\"2\" Z=\"0\" Z=\"1\">\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "E24",
+  "input": "<A Z=\"1 > B=\"2\">x</A>",
+  "expected": "<A Z=\"1>\r\n\tB=\"2\">x\r\n</A>"
+ },
+ {
+  "name": "unclosed",
+  "input": "<A><B>text</A>",
+  "expected": "<A>\r\n\t<B>\r\n\ttext\r\n</A>"
+ },
+ {
+  "name": "text_ws",
+  "input": "<A>  hello   big    world  </A>",
+  "expected": "<A>\r\n\thello   big    world\r\n</A>"
+ },
+ {
+  "name": "text_nl",
+  "input": "<A>line one\nline two\r\n   line three</A>",
+  "expected": "<A>\r\n\tline one line two line three\r\n</A>"
+ },
+ {
+  "name": "comment",
+  "input": "<A><!-- a comment <B> -->x</A>",
+  "expected": "<A>\r\n\t<!-- a comment <B>\r\n\t-->x\r\n</A>"
+ },
+ {
+  "name": "doctype",
+  "input": "<!DOCTYPE AOM SYSTEM \"aom.dtd\" [\n<!ENTITY foo \"bar\">\n]>\n<A>x</A>",
+  "expected": "<!DOCTYPE AOM SYSTEM \"aom.dtd\" [ <!ENTITY foo \"bar\">\r\n]>\r\n<A>\r\n\tx\r\n</A>"
+ },
+ {
+  "name": "lt_text",
+  "input": "<A>a < b and c > d</A>",
+  "expected": "<A>\r\n\ta\r\n\t< b and c>\r\n\td\r\n</A>"
+ },
+ {
+  "name": "mismatch",
+  "input": "<A><B>x</C></A>",
+  "expected": "\t\t<A>\r\n\t\t<B>\r\n\t\tx\r\n\t</C>\r\n</A>"
+ },
+ {
+  "name": "tagspace",
+  "input": "<A ><B  >x</B ></A >",
+  "expected": "\t\t<A>\r\n\t\t<B>\r\n\t\tx\r\n\t</B >\r\n</A >"
+ }
+]

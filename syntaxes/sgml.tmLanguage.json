@@ -1,0 +1,59 @@
+{
+  "name": "SGML",
+  "scopeName": "text.sgml",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#declaration" },
+    { "include": "#processing-instruction" },
+    { "include": "#tag" },
+    { "include": "#entity" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.block.sgml",
+      "begin": "<!--",
+      "end": "-->"
+    },
+    "declaration": {
+      "name": "meta.tag.sgml.declaration",
+      "begin": "(<!)([A-Za-z]+)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.sgml" },
+        "2": { "name": "keyword.other.sgml" }
+      },
+      "end": ">",
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.sgml" } },
+      "patterns": [{ "include": "#string" }]
+    },
+    "processing-instruction": {
+      "name": "meta.tag.preprocessor.sgml",
+      "begin": "<\\?",
+      "end": "\\??>"
+    },
+    "tag": {
+      "name": "meta.tag.sgml",
+      "begin": "(</?)([^\\s/>]+)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.tag.begin.sgml" },
+        "2": { "name": "entity.name.tag.sgml" }
+      },
+      "end": "/?>",
+      "endCaptures": { "0": { "name": "punctuation.definition.tag.end.sgml" } },
+      "patterns": [
+        { "match": "[^\\s=/>]+", "name": "entity.other.attribute-name.sgml" },
+        { "match": "=", "name": "punctuation.separator.key-value.sgml" },
+        { "include": "#string" }
+      ]
+    },
+    "string": {
+      "patterns": [
+        { "name": "string.quoted.double.sgml", "begin": "\"", "end": "\"" },
+        { "name": "string.quoted.single.sgml", "begin": "'", "end": "'" }
+      ]
+    },
+    "entity": {
+      "name": "constant.character.entity.sgml",
+      "match": "&[A-Za-z0-9#.]+;"
+    }
+  }
+}

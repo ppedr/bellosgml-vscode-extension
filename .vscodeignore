@@ -1,0 +1,18 @@
+# Tests and build scripts
+test/**
+scripts/**
+
+# Dev/config files
+.vscode/**
+.github/**
+.claude/**
+CLAUDE.md
+DEVELOPMENT.md
+.gitignore
+.vscodeignore
+*.map
+*.vsix
+
+# Package manager files
+node_modules/**
+package-lock.json
