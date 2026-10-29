@@ -3,6 +3,7 @@ test/**
 scripts/**
 .vscode-test/**
 prompt/**
+images/**
 
 # Dev/config files
 .vscode/**

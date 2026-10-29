@@ -1,53 +1,39 @@
 # Bello SGML Pretty Printer
 
 SGML support for VS Code: syntax highlighting, the element hierarchy in breadcrumbs, Outline and Sticky
-Scroll, and a pretty-printer that turns hard-to-read SGML into a clean, indented document, one tag or text
-block per line. It works with documents of tens of megabytes without freezing VS Code.
+Scroll, and a pretty-printer that turns hard-to-read SGML into a clean, indented document, even for
+technical manuals of tens of megabytes.
+
+![A messy SGML file formatted with Shift+Alt+F](images/bello.gif)
 
 `.sgml` and `.sgm` files open as **SGML** with no configuration, and this extension is their default
 formatter.
 
 ## Features
 
-### Syntax highlighting
+### Pretty-printing
 
-Tags, attributes, comments, declarations and entities get the same colours as XML in any theme. SGML
-constructs that XML does not have are highlighted too:
-
-- names with `-`, `.`, `_` and digits, in any case;
-- unquoted attribute values (`<para id=p001>`) and minimized attributes (`<list numbered>`);
-- processing instructions ending in `>` (`<?Pub Caret>`);
-- `<!DOCTYPE ...>` with an internal subset (`<!ENTITY>`, `<!ELEMENT>`, `<!ATTLIST>`) and `-- comments --`
-  inside declarations;
-- entity references with or without `;` (`&mdash;`, `&mdash`, `&#123;`, `&#x1F;`) and parameter entities
-  (`%name;`);
-- marked sections: `CDATA`, `RCDATA`, `IGNORE`, `INCLUDE` and `%param;`;
-- empty tags `<>` and `</>`. Omitted end tags never break the highlighting.
+`Shift+Alt+F` indents the document, one tag or text block per line, sorts attributes and wraps long text.
+Large files are pretty-printed to a `*.bello.sgml` copy in the background, without freezing VS Code.
 
 ### Element hierarchy
 
-With the cursor anywhere in the document you can see which elements it is in, without scrolling:
+<!-- ![Breadcrumbs, Sticky Scroll and the status bar path](images/hierarchy.png) -->
 
-- **Breadcrumbs** at the top of the editor: `dmodule > content > para`.
-- **Outline** view, with each element's `id` (or its first attribute) next to its name.
-- **Sticky Scroll**: the enclosing elements stay at the top of the editor while you scroll.
-- **Folding** of elements, comments and marked sections.
-- **Status bar**: the path of the element under the cursor. Click it to copy `/dmodule/content/para`.
-- **SGML: Copy Element Path** (Command Palette): copy the simple path or an XPath with positions, such as
-  `/dmodule/content/para[3]`.
+See where the cursor is in breadcrumbs, Outline, Sticky Scroll and the status bar, and copy the element path.
+Omitted end tags are handled without a DTD.
 
-Omitted end tags are handled without a DTD:
+<!-- ![Outline with element ids](images/outline.png) -->
+<!-- ![SGML: Copy Element Path](images/copy-path.png) -->
 
-- `</list>` closes every element still open inside `list`, such as a last `<item>` without `</item>`.
-- An element whose name never has an end tag in the document is empty: `<COLSPEC COLNAME="C1">`, and
-  milestones such as `<REVST>revised text<REVEND>`. The pretty-printer makes the same assumption.
-- `<!ELEMENT graphic - O EMPTY>` in the internal subset is respected.
-- List other empty elements in `sgml.emptyElements`.
+### Syntax highlighting
 
-A name that is closed in some places and not in others (`<p>one<p>two</p>`) nests, because only a DTD can
-tell where the first `p` ends.
+<!-- ![The same snippet in SGML and XML, with the same colours](images/highlighting.png) -->
 
-### Pretty-printing
+Tags, attributes, comments, declarations and entities get the same colours as XML in any theme, plus SGML
+constructs XML does not have: unquoted and minimized attributes, marked sections and omitted end tags.
+
+## Pretty-printing in detail
 
 - **Format Document** (`Shift+Alt+F`) pretty-prints the open document in place. Documents larger than
   `bellosgml.largeFileSizeMB` are not changed in the editor, because a huge edit can freeze VS Code for
@@ -67,6 +53,45 @@ tell where the first `p` ends.
 - **Encoding preserved** in copies: UTF-8 (with or without BOM) and Latin-1 files are written back in the
   same encoding.
 
+## Element hierarchy in detail
+
+With the cursor anywhere in the document you can see which elements it is in, without scrolling:
+
+- **Breadcrumbs** at the top of the editor: `dmodule > content > para`.
+- **Outline** view, with each element's `id` (or its first attribute) next to its name.
+- **Sticky Scroll**: the enclosing elements stay at the top of the editor while you scroll.
+- **Folding** of elements, comments and marked sections.
+- **Status bar**: the path of the element under the cursor. Click it to copy `/dmodule/content/para`.
+- **SGML: Copy Element Path** (Command Palette): copy the simple path or an XPath with positions, such as
+  `/dmodule/content/para[3]`.
+
+### Omitted end tags
+
+Omitted end tags are handled without a DTD:
+
+- `</list>` closes every element still open inside `list`, such as a last `<item>` without `</item>`.
+- An element whose name never has an end tag in the document is empty: `<COLSPEC COLNAME="C1">`, and
+  milestones such as `<REVST>revised text<REVEND>`. The pretty-printer makes the same assumption.
+- `<!ELEMENT graphic - O EMPTY>` in the internal subset is respected.
+- List other empty elements in `sgml.emptyElements`.
+
+A name that is closed in some places and not in others (`<p>one<p>two</p>`) nests, because only a DTD can
+tell where the first `p` ends.
+
+## Syntax highlighting in detail
+
+Colours match XML in every theme. SGML constructs that XML does not have are highlighted too:
+
+- names with `-`, `.`, `_` and digits, in any case;
+- unquoted attribute values (`<para id=p001>`) and minimized attributes (`<list numbered>`);
+- processing instructions ending in `>` (`<?Pub Caret>`);
+- `<!DOCTYPE ...>` with an internal subset (`<!ENTITY>`, `<!ELEMENT>`, `<!ATTLIST>`) and `-- comments --`
+  inside declarations;
+- entity references with or without `;` (`&mdash;`, `&mdash`, `&#123;`, `&#x1F;`) and parameter entities
+  (`%name;`);
+- marked sections: `CDATA`, `RCDATA`, `IGNORE`, `INCLUDE` and `%param;`;
+- empty tags `<>` and `</>`. Omitted end tags never break the highlighting.
+
 ## Large documents
 
 | Size | What works |
@@ -82,10 +107,10 @@ often much larger than their originals: a 42 MB manual becomes a 68 MB copy.
 
 On a real 42 MB aircraft operating manual (1.3 million lines, 870,000 elements), breadcrumbs and Outline are
 ready about 1.2 seconds after the document opens, and later requests reuse the parse until the document
-changes. Breadcrumbs, Outline and
-Sticky Scroll show at most `sgml.hierarchy.maxSymbols` elements (100,000). When a document has more, they
-show the top levels (for example `AOM > SECTION > SUBSEC > BLOCK`) and the status bar still shows the full
-path. Showing every element of such a document takes about 7 seconds after every change.
+changes. Breadcrumbs, Outline and Sticky Scroll show at most `sgml.hierarchy.maxSymbols` elements (100,000).
+When a document has more, they show the top levels (for example `AOM > SECTION > SUBSEC > BLOCK`) and the
+status bar still shows the full path. Showing every element of such a document takes about 7 seconds after
+every change.
 
 VS Code also turns off highlighting and folding for documents over 20 MB or 300,000 lines
 (`editor.largeFileOptimizations`). Large manuals and their pretty-printed copies often pass 300,000 lines.
@@ -108,6 +133,11 @@ VS Code also turns off highlighting and folding for documents over 20 MB or 300,
 Open the settings with `Ctrl+,` and search for **SGML**.
 
 ## Installation
+
+### From the Marketplace
+
+In VS Code, open the Extensions view (`Ctrl+Shift+X`), search for **Bello SGML** and click **Install**, or
+run `ext install ppfjuni.bellosgml` from Quick Open (`Ctrl+P`).
 
 ### From VSIX (manual)
 

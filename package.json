@@ -1,10 +1,14 @@
 {
   "name": "bellosgml",
   "displayName": "Bello SGML Pretty Printer",
-  "description": "SGML language support for VS Code: syntax highlighting, element hierarchy in breadcrumbs, outline and sticky scroll, and a pretty-printer that handles very large files.",
+  "description": "SGML language support for VS Code: syntax highlighting, element hierarchy in breadcrumbs, outline and sticky scroll, and a pretty-printer that handles very large technical manuals (ATA, S1000D).",
   "version": "1.1.0",
   "publisher": "ppfjuni",
   "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0e5ca6",
+    "theme": "dark"
+  },
   "license": "MIT",
   "engines": {
     "vscode": "^1.75.0"
@@ -23,12 +27,23 @@
     "beautify",
     "syntax highlighting",
     "outline",
-    "breadcrumbs"
+    "breadcrumbs",
+    "sticky scroll",
+    "folding",
+    "ata",
+    "ata 2200",
+    "s1000d",
+    "technical manual",
+    "technical documentation"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ppedr/bellosgml-vscode-extension"
   },
+  "bugs": {
+    "url": "https://github.com/ppedr/bellosgml-vscode-extension/issues"
+  },
+  "homepage": "https://github.com/ppedr/bellosgml-vscode-extension#readme",
   "main": "./extension.js",
   "activationEvents": [
     "onLanguage:sgml"

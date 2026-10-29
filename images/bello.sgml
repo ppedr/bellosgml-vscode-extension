@@ -1,0 +1,8 @@
+<!DOCTYPE musica SYSTEM "musica.dtd">
+<musica  ritmo="bossa"   id="bello"><titulo>Canção do Bello</titulo><artista>Bello SGML</artista>
+<letra><estrofe n="1"><verso>Abri a tag do teu olhar</verso><verso>e esqueci de a fechar</verso>
+      <verso>o parser veio me avisar</verso></estrofe><refrao>
+<verso>Indenta, indenta o coração</verso>
+<verso>cada verso em seu lugar</verso><verso>nenhum fim de tag em vão</verso></refrao>
+   <estrofe n="2"><verso>Era um arquivo sem final</verso><verso>cinco mega de saudade</verso>
+<verso>e um Shift+Alt+F afinal</verso></estrofe></letra></musica>
