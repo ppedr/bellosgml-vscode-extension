@@ -4,6 +4,7 @@
   "description": "Pretty-prints SGML files (.sgml, .sgm) to an indented *.bello.sgml copy, including very large files.",
   "version": "1.0.0",
   "publisher": "ppfjuni",
+  "icon": "icon.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.75.0"
